@@ -1,5 +1,7 @@
 package ru.pflb.pflbConfig.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 /**
@@ -18,6 +20,7 @@ public class Config {
     private String specificationConfig;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Emulator emulator;
 
     public Config() {
@@ -51,6 +54,10 @@ public class Config {
 
     public Emulator getEmulator() {
         return emulator;
+    }
+
+    public void setConfig_id(int config_id) {
+        this.config_id = config_id;
     }
 
     public void setEmulator(Emulator emulators) {

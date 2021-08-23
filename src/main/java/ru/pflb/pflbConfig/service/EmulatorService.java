@@ -25,14 +25,20 @@ public class EmulatorService {
 
     /**
      * Метод для получения ВСЕХ Emulator из БД.
+     *
      * @return - Список Emulator объектов.
      */
     public List<Emulator> getEmulatorsList() {
         return emulatorRepository.findAll();
     }
 
+    public Emulator getEmulatorByName(String name) {
+        return emulatorRepository.findByNameEmulator(name);
+    }
+
     /**
      * Метод для получения Emulator из БД.
+     *
      * @param id - получаем id и по нему достаем Emulator из БД.
      * @return - возвращаем в EmulatorController объект Emulator.
      */
@@ -42,6 +48,7 @@ public class EmulatorService {
 
     /**
      * Метод для удаления Emulator из БД.
+     *
      * @param id - получаем id и по нему удаляем Emulator из БД.
      */
     public void deleteEmulatorById(int id) {
@@ -50,6 +57,7 @@ public class EmulatorService {
 
     /**
      * Метод для сохранения Emulator в БД.
+     *
      * @param emulator - получаем Emulator и сохраняем его в БД.
      */
     public void saveEmulator(Emulator emulator) {

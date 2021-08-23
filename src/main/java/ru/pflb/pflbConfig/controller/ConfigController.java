@@ -83,13 +83,13 @@ public class ConfigController {
     /**
      * Запрос типа Post со странички config-edit.html , который посылает наша форма.
      * Связываем полученный Config с нужным эмулятором и Сохраняем его в БД.
-     * @param id - получаем id объекта Emulator , что бы связать Config с нужным Emulator.
+     * @param emulatorId - получаем id объекта Emulator , что бы связать Config с нужным Emulator.
      * @param config - получаем Config из формы.
      * @return - делаем редирект на /emulators/list
      */
-    @PostMapping("/edit/{id}")
-    public String updateConfig(@PathVariable int id, Config config) {
-        config.setEmulator(emulatorService.getEmulatorById(id));
+    @PostMapping("/edit/{emulatorId}")
+    public String updateConfig(@PathVariable int emulatorId, Config config) {
+        config.setEmulator(emulatorService.getEmulatorById(emulatorId));
         configService.saveConfig(config);
         return "redirect:/emulators/list";
     }

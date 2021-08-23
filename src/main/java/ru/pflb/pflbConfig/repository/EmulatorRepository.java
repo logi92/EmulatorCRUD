@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface EmulatorRepository extends JpaRepository<Emulator, Integer> {
+    public Emulator findByNameEmulator(String name);
 }

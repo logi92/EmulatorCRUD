@@ -34,7 +34,7 @@
                         <tr th:each="config : ${emulator.configList}">
                             <td th:text="${config.nameConfig}"/>
                             <td th:text="${config.specificationConfig}"/>
-                            <td><a th:href="@{~/configs/update/{id}(id=${config.config_id})}">Edit Config</a></td>
+                            <td><a th:href="@{~/configs/edit/{id}(id=${config.config_id})}">Edit Config</a></td>
                             <td><a th:href="@{~/configs/delete/{id}(id=${config.config_id})}">Delete Config</a></td>
                         </tr>
                         </tbody>

@@ -1,14 +1,12 @@
 package ru.pflb.pflbConfig.controller;
 
+import org.springframework.web.bind.annotation.*;
+import ru.pflb.pflbConfig.model.Config;
 import ru.pflb.pflbConfig.model.Emulator;
 import ru.pflb.pflbConfig.service.EmulatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -31,6 +29,7 @@ public class EmulatorController {
     /**
      * Выводит на страницу emulator-list.html список всех эмуляторов, которые находятся в БД.
      * Получаем из EmulatorService список эмуляторов.
+     *
      * @param model - привязываем список эмуляторов к Model.
      * @return - переадресовываемся на страницу emulator-list.html, где будет выводится список эмуляторов.
      */
@@ -41,9 +40,23 @@ public class EmulatorController {
         return "emulator-list";
     }
 
+    /**
+     * Данный метод нужен что бы доставать из БД эмулятор с соответствующим именем,
+     * затем берем конфиги соответствующие этому эмулятору и возвращаем их.
+     *
+     * @param name - передаем имя Эмулятора.
+     * @return - возвращаем список конфигов для этого эмулятора
+     */
+    @GetMapping("/getEmulator/{name}")
+    @ResponseBody
+    public List<Config> getEmulatorByName(@PathVariable String name) {
+        List<Config> configs = emulatorService.getEmulatorByName(name).getConfigList();
+        return configs;
+    }
 
     /**
      * Запрос типа Get на добавление Emulator. Данный метод перебрасывает на страницу с формой.
+     *
      * @param emulator - объект Emulator неявно привязывается к Model и передается на страничку emulator-add.html.
      * @return - переадресовываем на страничку emulator-add.html, на которой расположена форма.
      */
@@ -55,6 +68,7 @@ public class EmulatorController {
     /**
      * Запрос типа Post со странички emulator-add.html , который посылает наша форма.
      * Сохраняем полученный эмулятор в БД.
+     *
      * @param emulator - получаем Emulator из формы.
      * @return - делаем редирект на /emulators/list
      */
@@ -66,6 +80,7 @@ public class EmulatorController {
 
     /**
      * Запрос типа Get для удаления Emulator.
+     *
      * @param id - получаем id и по нему находим нужный Emulator.
      * @return - делаем редирект на /emulators/list
      */
@@ -77,7 +92,8 @@ public class EmulatorController {
 
     /**
      * Запрос типа Get на редактирование Emulator. Данный метод перебрасывает на страницу с формой.
-     * @param id - получаем id и по нему находим нужный Emulator.
+     *
+     * @param id    - получаем id и по нему находим нужный Emulator.
      * @param model - связавыем наш Emulator с Model и передаем ее на страничку emulator-edit.html.
      * @return - переадресовываем на страничку emulator-edit.html, на которой расположена форма.
      */
@@ -91,6 +107,7 @@ public class EmulatorController {
     /**
      * Запрос типа Post со странички emulator-edit.html , который посылает наша форма.
      * Сохраняем полученный эмулятор в БД.
+     *
      * @param emulator - получаем Emulator из формы.
      * @return - делаем редирект на /emulators/list
      */
