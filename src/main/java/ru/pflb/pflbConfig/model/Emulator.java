@@ -12,7 +12,7 @@ import java.util.List;
 @Table(name = "emulators")
 public class Emulator {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id_emulator;
 
     @Column(name = "name_emulator")

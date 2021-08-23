@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Table(name = "configs")
 public class Config {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int config_id;
     @Column(name = "name_config")
     private String nameConfig;
